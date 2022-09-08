@@ -44,20 +44,20 @@
                           </tr>
                       </thead>
                       <tbody>
+                        @foreach ($brands as $item)
                           <tr>
-                            @foreach ($brands as $item)
+                            
                                 <td>{{ $item->brand_name_en }}</td>
                                 <td>{{ $item->brand_name_hin }}</td>
                                 <td><img src="{{ asset($item->brand_image) }}" style="width: 70px; height=40px;" alt=""></td>
-                                <td>61</td>
                                 <td>
-                                    <a href="" class="btn btn-info">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                    <a href="{{ route('brand.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                                 </td>
                                 
-                            @endforeach
+                           
                           </tr>
-                          
+                        @endforeach
                       </tbody>
                       
                     </table>
@@ -91,29 +91,38 @@
                     <div class="form-group">
                        <h5>Brand Name English  <span class="text-danger">*</span></h5>
                        <div class="controls">
-                    <input type="text" id="brand_name_en" name="brand_name_en" class="form-control" required="" > </div>
+                    <input type="text" id="brand_name_en" name="brand_name_en" class="form-control" > </div>
                    </div>
                
+                   @error('brand_name_en')
+                    <span class="text-danger">{{$message}}</span>
+                   @enderror
                
                    <div class="form-group">
                        <h5>Brand Name Hindi  <span class="text-danger">*</span></h5>
                        <div class="controls">
-                    <input type="text"  name="brand_name_hin" class="form-control" required="" > </div>
+                    <input type="text"  name="brand_name_hin" class="form-control"  > </div>
                    </div>
                
-               
+                   @error('brand_name_hin')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                
                    <div class="form-group">
-                       <h5>Confirm Password  <span class="text-danger">*</span></h5>
+                       <h5>Brand Image  <span class="text-danger">*</span></h5>
                        <div class="controls">
-                    <input type="file"  name="brand_image" class="form-control" required="" > </div>
+                    <input type="file"  name="brand_image" class="form-control"  > </div>
                    </div>
+
+                   @error('brand_image')
+                   <span class="text-danger">{{$message}}</span>
+                  @enderror
                                    
                
                             <div class="text-xs-right">
-                   <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">					 
+                   <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
                                        </div>
-                                   </form>
+                </form>
                
                    </div>
                </div>
