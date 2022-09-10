@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <title>Afiq Ecomm</title>
     
@@ -325,33 +327,39 @@
 	<script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
 	<script src="{{ asset('../assets/icons/feather-icons/feather.min.js') }}"></script>
 	<script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
-	
+
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+
 	<script>
-	@if(Session::has('message'))
-	var type = "{{ Session::get('alert-type','info') }}"
-	switch(type){
+	 @if(Session::has('message'))
+	 var type = "{{ Session::get('alert-type','info') }}"
+	 switch(type){
 		case 'info':
 		toastr.info(" {{ Session::get('message') }} ");
 		break;
-
+	
 		case 'success':
 		toastr.success(" {{ Session::get('message') }} ");
 		break;
-
+	
 		case 'warning':
 		toastr.warning(" {{ Session::get('message') }} ");
 		break;
-
+	
 		case 'error':
 		toastr.error(" {{ Session::get('message') }} ");
 		break; 
-	}
-	@endif 
+	 }
+	 @endif 
 	</script>
+	
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script type="text/javascript">
 
 $(function(){
