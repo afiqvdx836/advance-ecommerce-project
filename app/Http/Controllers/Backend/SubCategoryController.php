@@ -48,4 +48,32 @@ class SubCategoryController extends Controller
         $subcategory = SubCategory::findOrFail($id);
         return view('backend.category.subcategory_edit', compact('subcategory','categories'));
     }
+
+    public function SubCategoryUpdate(Request $request){
+        $subcat_id = $request->id;
+
+        SubCategory::findOrFail($subcat_id)->update([
+            'category_id' => $request->category_id,
+            'subcategory_name_en' => $request->subcategory_name_en,
+            'subcategory_name_hin' => $request->subcategory_name_hin,
+            'subcategory_slug_en' => strtolower(str_replace(' ', '-',$request->subcategory_name_en)),
+            'subcategory_slug_hin' => str_replace(' ', '-',$request->subcategory_name_hin),
+
+        ]);
+    
+        $notification = array(
+			'message' => 'SubCategory Added Successfully',
+			'alert-type' => 'success'
+		);
+        return redirect()->route('all.subcategory')->with($notification);
+    } // End Method
+
+    public function SUbCategoryDelete($id){
+        SubCategory::findOrFail($id)->delete();
+        $notification = array(
+			'message' => 'SubCategory Deleted Successfully',
+			'alert-type' => 'success'
+		);
+        return redirect()->back()->with($notification);
+    }
 }

@@ -36,7 +36,7 @@
                    <div class="table-responsive">   
                     <form method="post" action="{{ route('subcategory.update', $subcategory->id) }}" enctype="multipart/form-data" >
                         @csrf
-                    
+                    <input type="hidden" name="id" value="{{$subcategory->id}}">
                         <div class="controls">
                             <h5>Category List</h5>
                             <select name="category_id"  class="form-control" aria-invalid="false">
@@ -51,8 +51,8 @@
                     <div class="help-block"></div></div>
 
                     @error('category_id')
-                    <span class="text-danger">{{$message}}</span>
-                   @enderror
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
                     <div class="form-group">
                        <h5>SubCategory Name English  <span class="text-danger">*</span></h5>
