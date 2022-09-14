@@ -76,4 +76,11 @@ class SubCategoryController extends Controller
 		);
         return redirect()->back()->with($notification);
     }
+
+    ////////// THIS IS FOR SUB->SUBCATEGORY //////////
+    public function SubSubCategoryView(){
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $subsubcategory = SubSubCategory::latest()->get();
+        return view('backend.category.sub_subcategory_view', compact('subsubcategory','categories'));
+    }
 }
