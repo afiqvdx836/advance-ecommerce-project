@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div class="container-full">
       <!-- Content Header (Page header) -->
@@ -49,7 +50,7 @@
                             
                             <td> {{ $item['category']['category_name_en'] }} </td>
                                 <td>{{ $item['subcategory']['subcategory_name_en']}}</td>
-                                <td>{{ $item->subcategory_name_hin }}</td>
+                                <td>{{ $item->subsubcategory_name_en  }}</td>
                                 <td>
                                     <a href="{{ route('subcategory.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
                                     <a href="{{ route('subcategory.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
@@ -79,7 +80,7 @@
 
             <div class="box">
                <div class="box-header with-border">
-                 <h3 class="box-title">Add Category</h3>
+                 <h3 class="box-title">Add SubCategory</h3>
                </div>
                <!-- /.box-header -->
                <div class="box-body">
@@ -104,21 +105,35 @@
                             <span class="text-danger">{{$message}}</span>
                            @enderror
                         </div>
+
+
+                        <div class="form-group">
+                            <h5>SubCategory Select <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <select name="subcategory_id" class="form-control"  >
+                                    <option value="" selected="" disabled="">Select SubCategory</option>
+                        
+                                </select>
+                                @error('subcategory_id') 
+                             <span class="text-danger">{{ $message }}</span>
+                             @enderror 
+                             </div>
+                                 </div>
                
                     <div class="form-group">
-                       <h5>SubCategory Name English  <span class="text-danger">*</span></h5>
+                       <h5>Sub->SubCategory Name English  <span class="text-danger">*</span></h5>
                        <div class="controls">
-                    <input type="text" id="category_name_en" name="subcategory_name_en" class="form-control" > </div>
+                    <input type="text" id="category_name_en" name="subsubcategory_name_en" class="form-control" > </div>
                    </div>
                
-                   @error('subcategory_name_en')
+                   @error('subsubcategory_name_en')
                     <span class="text-danger">{{$message}}</span>
                    @enderror
                
                    <div class="form-group">
-                       <h5>SubCategory Name Hindi  <span class="text-danger">*</span></h5>
+                       <h5>Sub->SubCategory Name Hindi  <span class="text-danger">*</span></h5>
                        <div class="controls">
-                    <input type="text"  name="subcategory_name_hin" class="form-control"  > </div>
+                    <input type="text"  name="subsubcategory_name_hin" class="form-control"  > </div>
                    </div>
                
                    @error('subcategory_name_hin')
@@ -147,5 +162,26 @@
     
     </div>
 
-    
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('select[name="category_id"]').on('change', function(){
+              var category_id = $(this).val();
+              if(category_id) {
+                  $.ajax({
+                      url: "{{  url('/category/subcategory/ajax') }}/"+category_id,
+                      type:"GET",
+                      dataType:"json",
+                      success:function(data) {
+                         var d =$('select[name="subcategory_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                            });
+                      },
+                  });
+              } else {
+                  alert('danger');
+              }
+          });
+      });
+      </script>
 @endsection
