@@ -52,7 +52,7 @@
                                 <td>{{ $item['subcategory']['subcategory_name_en']}}</td>
                                 <td>{{ $item->subsubcategory_name_en  }}</td>
                                 <td>
-                                    <a href="{{ route('subcategory.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                    <a href="{{ route('subsubcategory.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
                                     <a href="{{ route('subcategory.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                                 </td>
                                 
@@ -85,7 +85,7 @@
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
-                    <form method="post" action="{{ route('subcategory.store') }}" enctype="multipart/form-data" >
+                    <form method="post" action="{{ route('subsubcategory.store') }}" enctype="multipart/form-data" >
                         @csrf
                         <div class="form-group">
                             <h5>Category List <span class="text-danger">*</span></h5>
@@ -136,7 +136,7 @@
                     <input type="text"  name="subsubcategory_name_hin" class="form-control"  > </div>
                    </div>
                
-                   @error('subcategory_name_hin')
+                   @error('subsubcategory_name_hin')
                     <span class="text-danger">{{$message}}</span>
                     @enderror 
                
