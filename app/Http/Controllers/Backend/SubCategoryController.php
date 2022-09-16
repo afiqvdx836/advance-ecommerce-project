@@ -123,7 +123,32 @@ class SubCategoryController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function SubSubCategoryEdit($category_id){
+    public function SubSubCategoryEdit($id){
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $subcategories = SubCategory::orderBy('subcategory_name_en','ASC')->get();
+        $subsubcategories = SubSubCategory::findOrFail($id);
         
+        return view('backend.category.sub_subcategory_edit',compact('categories','subcategories','subsubcategories'));
     }
+
+    public function SubSubCategoryUpdate(Request $request){
+        $subsubcat = $request->id;
+        SubSubCategory::findOrFail($subsubcat)->update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_name_en' => $request->subsubcategory_name_en,
+            'subsubcategory_name_hin' => $request->subsubcategory_name_hin,
+            'subsubcategory_slug_en' => strtolower(str_replace(' ', '-',$request->subsubcategory_name_en)),
+            'subsubcategory_slug_hin' => str_replace(' ', '-',$request->subsubcategory_name_hin),
+
+        ]);
+    
+        $notification = array(
+			'message' => 'Sub-SubCategory Updated Successfully',
+			'alert-type' => 'success'
+		);
+        return redirect()->route('all.subsubcategory')->with($notification);
+    }
+
+   
 }
