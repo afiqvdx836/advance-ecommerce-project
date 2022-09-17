@@ -45,7 +45,7 @@
           </ul>
         </li> 
 		  
-        <li class="treeview { ($prefix == '/category'?'active':'') }}">
+        <li class="treeview {{ ($prefix == '/category'?'active':'') }}">
           <a href="#">
             <i data-feather="mail"></i> <span>Category</span>
             <span class="pull-right-container">
@@ -70,7 +70,7 @@
           </a>
           <ul class="treeview-menu">
             
-            <li><a href="timeline.html"><i class="ti-more"></i>Add Products</a></li>
+            <li class="{{ ($route == 'add-product')? 'active':'' }}"><a href="{{ route('add-product') }}"><i class="ti-more"></i>Add Products</a></li>
             <li><a href="timeline.html"><i class="ti-more"></i>Manage Products</a></li>
           </ul>
         </li> 		  
