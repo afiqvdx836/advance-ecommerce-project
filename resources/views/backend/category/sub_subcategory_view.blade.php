@@ -91,17 +91,15 @@
                             <h5>Category List <span class="text-danger">*</span></h5>
                             <div class="controls">
                                
-                                    <select name="category_id"  class="form-control" aria-invalid="false">
-                                        <option value="" selected="" disabled="">Select Your Category</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{$category->id}}" >{{ $category->category_name_en}}</option>
-                                        @endforeach
+                                    <select name="subsubcategory_id"  class="form-control" aria-invalid="false">
+                                        <option value="" selected="" disabled="">Select Sub SubCategory</option>
+
                                     </select>
                                
                                
                             <div class="help-block"></div></div>
 
-                            @error('category_id')
+                            @error('subsubcategory_id')
                             <span class="text-danger">{{$message}}</span>
                            @enderror
                         </div>
