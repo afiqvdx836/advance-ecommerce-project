@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Image;
 use Carbon\Carbon;
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Category;
+use App\Models\MultiImg;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +26,7 @@ class ProductController extends Controller
         Image::make($image)->resize(917,1000)->save('upload/products/thambnail/'.$name_gen);
         $save_url = 'upload/products/thambnail/'.$name_gen;
 
-        Product::insert([
+        $product_id = Product::insertGetId([
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -34,6 +37,7 @@ class ProductController extends Controller
             'product_slug_en' => strtolower(str_replace(' ', '-',$request->product_name_en)),
             'product_slug_hin' => strtolower(str_replace(' ', '-',$request->product_name_hin)),
             'product_code' => $request->product_code,
+            'product_qty' => $request->product_qty,
             'product_tags_en' => $request->product_tags_en,
             'product_tags_hin' => $request->product_tags_hin,
             'product_size_en' => $request->product_size_en,
@@ -64,6 +68,33 @@ class ProductController extends Controller
             
         ]);
 
+        ////// Multiple Image Upload Start //////
+        $images = $request->file('multi_img');
+        foreach($images as $img) {
+        $make_name = hexdec(uniqid()). '.' .$img->getClientOriginalExtension();
+        Image::make($img)->resize(917,1000)->save('upload/products/multi-image/'.$make_name);
+        $upload_path = 'upload/products/multi-image/'.$make_name;
+
+        MultiImg::insert([
+            'product_id' => $product_id,
+            'photo_name' => $upload_path,
+            'created_at' => Carbon::now(),
+
+        ]);
+
         }
+        
+
+        /////End Multiple Image upload/////////
+
+        
+       $notification = array(
+        'message' => 'Product Inserted Successfully',
+        'alert-type' => 'success'
+    );
+
+    return redirect()->back()->with($notification);
+
     }
 }
+
