@@ -90,22 +90,22 @@
 
 
 <div class="row"> <!-- start 2nd row  -->
-    <div class="col-md-4">
+			<div class="col-md-4">
 
-        <div class="form-group">
-       <h5>SubSubCategory Select <span class="text-danger">*</span></h5>
-       <div class="controls">
-           <select name="subsubcategory_id" class="form-control" required="" >
-               <option value="" selected="" disabled="">Select SubSubCategory</option>
-            
-           </select>
-           @error('subsubcategory_id') 
-        <span class="text-danger">{{ $message }}</span>
-        @enderror 
-        </div>
-            </div>
-                   
-               </div> <!-- end col md 4 -->
+	 <div class="form-group">
+	<h5>SubSubCategory Select <span class="text-danger">*</span></h5>
+	<div class="controls">
+		<select name="subsubcategory_id" class="form-control" required="" >
+			<option value="" selected="" disabled="">Select SubSubCategory</option>
+		 
+		</select>
+		@error('subsubcategory_id') 
+	 <span class="text-danger">{{ $message }}</span>
+	 @enderror 
+	 </div>
+		 </div>
+				
+			</div> <!-- end col md 4 -->
 
 			<div class="col-md-4">
 
@@ -113,9 +113,9 @@
 			<h5>Product Name En <span class="text-danger">*</span></h5>
 			<div class="controls">
 				<input type="text" name="product_name_en" class="form-control" required="">
-            @error('product_name_en') 
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
+     @error('product_name_en') 
+	 <span class="text-danger">{{ $message }}</span>
+	 @enderror
 	 	  </div>
 		</div>
 				
@@ -449,6 +449,18 @@
 
 <div class="col-md-6">
 
+	    <div class="form-group">
+			<h5>Digital Product <span class="text-danger">pdf,xlx,csv*</span></h5>
+			<div class="controls">
+	 <input type="file" name="file" class="form-control" > 
+	  
+	 		 </div>
+		</div>
+				 
+				
+			</div> <!-- end col md 4 -->
+
+
 
 
 						 
@@ -470,49 +482,53 @@
 		<!-- /.content -->
 	  </div>
  
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $('select[name="category_id"]').on('change', function(){
-              var category_id = $(this).val();
-              if(category_id) {
-                  $.ajax({
-                      url: "{{  url('/category/subcategory/ajax') }}/"+category_id,
-                      type:"GET",
-                      dataType:"json",
-                      success:function(data) {
-                         var d =$('select[name="subcategory_id"]').empty();
-                            $.each(data, function(key, value){
-                                $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
-                            });
-                      },
-                  });
-              } else {
-                  alert('danger');
-              }
-          });
-   $('select[name="subcategory_id"]').on('change', function(){
-              var subcategory_id = $(this).val();
-              if(subcategory_id) {
-                  $.ajax({
-                      url: "{{  url('/category/sub-subcategory/ajax') }}/"+subcategory_id,
-                      type:"GET",
-                      dataType:"json",
-                      success:function(data) {
-                        $('select[name="subsubcategory_id"]').html('');
-                         var d =$('select[name="subsubcategory_id"]').empty();
-                            $.each(data, function(key, value){
-                                $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
-                            });
-                      },
-                  });
-              } else {
-                  alert('danger');
-              }
-          });
-   
-      });
-      </script>
-  
+ <script type="text/javascript">
+      $(document).ready(function() {
+        $('select[name="category_id"]').on('change', function(){
+            var category_id = $(this).val();
+            if(category_id) {
+                $.ajax({
+                    url: "{{  url('/category/subcategory/ajax') }}/"+category_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                    	$('select[name="subsubcategory_id"]').html('');
+                       var d =$('select[name="subcategory_id"]').empty();
+                          $.each(data, function(key, value){
+                              $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                          });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+
+
+ $('select[name="subcategory_id"]').on('change', function(){
+            var subcategory_id = $(this).val();
+            if(subcategory_id) {
+                $.ajax({
+                    url: "{{  url('/category/sub-subcategory/ajax') }}/"+subcategory_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                       var d =$('select[name="subsubcategory_id"]').empty();
+                          $.each(data, function(key, value){
+                              $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
+                          });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+ 
+
+    });
+    </script>
+
 
 <script type="text/javascript">
 	function mainThamUrl(input){
