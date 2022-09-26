@@ -53,7 +53,7 @@
                                 <td>{{ $item->product_name_hin }}</td>
                                 <td>{{ $item->product_qty  }}</td>
                                 <td>
-                                    <a href="" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                    <a href="{{ route('edit-product', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Product"></i></a>
                                     <a href="" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                                 </td>
                                 

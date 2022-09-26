@@ -36,9 +36,9 @@
 	<div class="controls">
 		<select name="brand_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select Brand</option>
-			
 			@foreach($brands as $brand)
- 			<option value="{{ $brand->id }}" {{$brand->id == $product->brand_id ? 'selected': ''}}>{{ $brand->brand_name_en }}</option>
+ <option value="{{ $brand->id }}" {{ $brand->id == $products->brand_id ? 'selected': '' }}>{{ $brand->brand_name_en }}</option>
+
 			@endforeach
 		</select>
 		@error('brand_id') 
@@ -57,7 +57,7 @@
 		<select name="category_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select Category</option>
 			@foreach($categories as $category)
- <option value="{{ $category->id }}" {{$category->id == $product->category_id ? 'selected': '' }}>{{ $category->category_name_en }}</option>	
+ <option value="{{ $category->id }}" {{ $category->id == $products->category_id ? 'active': ''}}>{{ $category->category_name_en }}</option>	
 			@endforeach
 		</select>
 		@error('category_id') 
@@ -76,9 +76,9 @@
 	<div class="controls">
 		<select name="subcategory_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select SubCategory</option>
-			 @foreach ( $subcategory as $sub )
-			 <option value="{{ $sub->id }}" {{ $sub->id == $product->subcategory_id ? 'selected': '' }} selected="" disabled="">Select SubCategory</option>
-			 @endforeach
+			 @foreach ($subcategories as $subcategory )
+                <option value="{{ $subcategory->id }} " {{$subcategory->id == $products->category_id ? 'active' : ''}} selected="" disabled="">Select SubCategory</option>
+             @endforeach
 		</select>
 		@error('subcategory_id') 
 	 <span class="text-danger">{{ $message }}</span>
@@ -100,9 +100,9 @@
 	<div class="controls">
 		<select name="subsubcategory_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select SubSubCategory</option>
-			@foreach ($subsubcategory as $subsub )
-				
-			@endforeach
+            @foreach ($subsubcategories as $subsubcategory )
+                <option value="{{$subsubcategory->id}}" {{$subsubcategory->id == $products->subsubcategory_id ? 'active': ''}} selected="" disabled="">Select SubSubCategory</option>
+            @endforeach
 		</select>
 		@error('subsubcategory_id') 
 	 <span class="text-danger">{{ $message }}</span>
@@ -117,7 +117,7 @@
 				 <div class="form-group">
 			<h5>Product Name En <span class="text-danger">*</span></h5>
 			<div class="controls">
-				<input type="text" name="product_name_en" class="form-control" required="">
+				<input type="text" name="product_name_en" class="form-control" required="" value="{{$products->product_name_en}}">
      @error('product_name_en') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -132,7 +132,7 @@
 				 <div class="form-group">
 			<h5>Product Name Hin <span class="text-danger">*</span></h5>
 			<div class="controls">
-				<input type="text" name="product_name_hin" class="form-control" required="">
+				<input type="text" name="product_name_hin" class="form-control" required="" value="{{ $products->product_name_hin }}">
      @error('product_name_hin') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -151,7 +151,7 @@
 	  <div class="form-group">
 			<h5>Product Code <span class="text-danger">*</span></h5>
 			<div class="controls">
-				<input type="text" name="product_code" class="form-control" required="">
+				<input type="text" name="product_code" class="form-control" required="" value="{{ $products->product_code }}">
      @error('product_code') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -165,7 +165,7 @@
 				 <div class="form-group">
 			<h5>Product Quantity <span class="text-danger">*</span></h5>
 			<div class="controls">
-				<input type="text" name="product_qty" class="form-control" required="">
+				<input type="text" name="product_qty" class="form-control" required="" value="{{ $products->product_qty}}">
      @error('product_qty') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -279,7 +279,7 @@
 				<div class="form-group">
 			<h5>Product Selling Price <span class="text-danger">*</span></h5>
 			<div class="controls">
-				<input type="text" name="selling_price" class="form-control" required="">
+				<input type="text" name="selling_price" class="form-control" required="" value="{{ $products->selling_price }}">
      @error('selling_price') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -299,7 +299,7 @@
 	    <div class="form-group">
 			<h5>Product Discount Price <span class="text-danger">*</span></h5>
 			<div class="controls">
-	 <input type="text" name="discount_price" class="form-control"  required="">
+	 <input type="text" name="discount_price" class="form-control"  required="" value="{{ $products->discount_price }}">
      @error('discount_price') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror

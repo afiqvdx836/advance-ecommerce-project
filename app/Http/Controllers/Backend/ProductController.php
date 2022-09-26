@@ -8,7 +8,9 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\MultiImg;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -95,13 +97,21 @@ class ProductController extends Controller
 
 	} // end method
 
-
-
 	public function ManageProduct(){
 
 		$products = Product::latest()->get();
 		return view('backend.product.product_view',compact('products'));
 	}
+
+    public function EditProduct($id){
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategories = SubCategory::latest()->get();
+        $subsubcategories = SubSubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+
+        return view('backend.product.product_edit', compact('brands','categories','subcategories','subsubcategories','products'));
+    }
 
 }
 
