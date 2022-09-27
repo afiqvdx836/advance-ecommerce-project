@@ -36,9 +36,8 @@
 	<div class="controls">
 		<select name="brand_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select Brand</option>
-			
 			@foreach($brands as $brand)
- 			<option value="{{ $brand->id }}" {{$brand->id == $product->brand_id ? 'selected': ''}}>{{ $brand->brand_name_en }}</option>
+ <option value="{{ $brand->id }}">{{ $brand->brand_name_en }}</option>	
 			@endforeach
 		</select>
 		@error('brand_id') 
@@ -57,7 +56,7 @@
 		<select name="category_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select Category</option>
 			@foreach($categories as $category)
- <option value="{{ $category->id }}" {{$category->id == $product->category_id ? 'selected': '' }}>{{ $category->category_name_en }}</option>	
+ <option value="{{ $category->id }}">{{ $category->category_name_en }}</option>	
 			@endforeach
 		</select>
 		@error('category_id') 
@@ -76,9 +75,7 @@
 	<div class="controls">
 		<select name="subcategory_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select SubCategory</option>
-			 @foreach ( $subcategory as $sub )
-			 <option value="{{ $sub->id }}" {{ $sub->id == $product->subcategory_id ? 'selected': '' }} selected="" disabled="">Select SubCategory</option>
-			 @endforeach
+			 
 		</select>
 		@error('subcategory_id') 
 	 <span class="text-danger">{{ $message }}</span>
@@ -100,9 +97,7 @@
 	<div class="controls">
 		<select name="subsubcategory_id" class="form-control" required="" >
 			<option value="" selected="" disabled="">Select SubSubCategory</option>
-			@foreach ($subsubcategory as $subsub )
-				
-			@endforeach
+		 
 		</select>
 		@error('subsubcategory_id') 
 	 <span class="text-danger">{{ $message }}</span>
