@@ -163,5 +163,33 @@ class ProductController extends Controller
         );
 		    return redirect()->route('manage-product')->with($notification);
     } // end method
+
+
+    /// Multiple Image Update//
+    public function MultiImageUpdate(Request $request){
+
+        $imgs = $request->multi_img;
+
+        foreach ($imgs as $id => $img) {
+            $imgDel = MultiImg::findOrFail($id);
+            unlink($imgDel->photo_name);
+
+            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize(917,1000)->save('upload/products/multi-image/'.$make_name);
+            $uploadPath = 'upload/products/multi-image/'.$make_name;
+
+            MultiImg::where('id',$id)->update([
+                'photo_name' => $uploadPath,
+                'updated_at' => Carbon::now(),
+            ]);
+        } // end foreach
+
+        $notification = array(
+			'message' => 'Product Updated  Image Successfully',
+			'alert-type' => 'success',
+        );
+		    return redirect()->back()->with($notification);
+
+    } // end method
 }
 

@@ -478,7 +478,9 @@
                       <div class="box-header">
                         <h4 class="box-title">Product Multiple Image Update</strong></h4>
                       </div>
-                      <form action="" enctype="multipart/form-data"></form>
+                      <form method="post" action="{{ route('update-product-image') }}" enctype="multipart/form-data" >
+                        
+                        @csrf
                         <div class="row row-sm">
                             @foreach ( $multiImgs as $img )
                                 <div class="col-md-3">
@@ -490,7 +492,7 @@
                                         <p class="card-text">
                                             <div class="form-group">
                                                 <label class="form-control-label">Change Image <span class="tx-danger">*</span></label>
-                                                <input class="form-control" type="file" name="multi_img[$img->id]" id="">
+                                                <input class="form-control" type="file" name="multi_img[{{ $img->id }}]">
                                             </div>
                                         </p>
                                     
@@ -502,13 +504,13 @@
                             <div class="text-xs-right">
                                 <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">
                             </div>
-                            </form>
+                        </form>
                         </div>
                     </div>
                   </div>
 
             </div> <!-- End row -->
-        </section>
+        </section><!-- End Multi image Update -->
 	  </div>
  
  <script type="text/javascript">
