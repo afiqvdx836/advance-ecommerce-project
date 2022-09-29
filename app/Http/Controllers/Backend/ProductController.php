@@ -235,6 +235,42 @@ class ProductController extends Controller
 
     }
 
+
+    public function ViewProduct($id){
+        $multiImgs = MultiImg::where('product_id', $id)->get();
+
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategories = SubCategory::latest()->get();
+        $subsubcategories = SubSubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+
+        return view('backend.product.product_view_detail', compact('brands','categories','subcategories','subsubcategories','products','multiImgs'));
+    }// end ViewProduct
+
+    public function ProductInActive($id){
+      Product::findOrFail($id)->update(['status' => 0]);
+    
+      $notification = array(
+        'message' => 'Product InActive Successfully',
+        'alert-type' => 'info'
+    );
+
+    return redirect()->back()->with($notification);
+
+    }// end ProductActive
+
+
+    public function ProductActive($id){
+        Product::findOrFail($id)->update(['status' => 1]);
+    
+      $notification = array(
+        'message' => 'Product Active Successfully',
+        'alert-type' => 'info'
+    );
+
+    return redirect()->back()->with($notification);
+    } // end ProductActive
     
 }
 
