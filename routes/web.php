@@ -121,5 +121,6 @@ Route::prefix('product')->group(function(){
      Route::get('/product/view/{id}', [ProductController::class, 'ViewProduct'])->name('view-product');
      Route::get('/product/inactive/{id}', [ProductController::class, 'ProductInActive'])->name('product.inactive');
      Route::get('/product/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
+     Route::get('/product/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
 
 });

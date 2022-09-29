@@ -77,7 +77,7 @@
                             <td width="30%">
                                 <a href="{{ route('view-product', $item->id) }}" class="btn btn-info"><i class="fa fa-eye" title="Product Details"></i></a>
                                 <a href="{{ route('edit-product', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Product"></i></a>
-                                <a href="" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
+                                <a href="{{ route('product.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
 
                                 @if ($item->status == 1)
                                 <a href="{{ route('product.inactive', $item->id) }}" class="btn btn-danger"><i class="fa fa-arrow-down" title="InActive Now"></i></a>
