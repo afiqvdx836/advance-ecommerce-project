@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -122,5 +123,15 @@ Route::prefix('product')->group(function(){
      Route::get('/product/inactive/{id}', [ProductController::class, 'ProductInActive'])->name('product.inactive');
      Route::get('/product/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
      Route::get('/product/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
+
+});
+
+//Admin All Brand Route
+Route::prefix('slider')->group(function(){
+    Route::get('/view', [SliderController::class, 'AllSlider'])->name('all.slider');
+    Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+    Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
 
 });
