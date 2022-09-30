@@ -99,5 +99,19 @@ class SliderController extends Controller
     
 
     }// end method
+
+    public function SliderDelete($id){
+        $slider = Slider::findOrFail($id);
+        $img = $slider->slider_img;
+        unlink($img);
+        Slider::findOrFail($id);
+
+        $notification = array(
+            'message' => 'Slider Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
     
 }
