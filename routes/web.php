@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -142,5 +143,8 @@ Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])
 Route::get('/user/profile/update-password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
-
+//User Route
+// Multi Languange ROute
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi.language');
 
