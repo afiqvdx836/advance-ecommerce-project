@@ -1,7 +1,9 @@
 @extends('frontend.main_master')
 @section('content')
 
-
+@section('title')
+ Home Easy Online Shop
+@endsection
 
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
   <div class="container">
