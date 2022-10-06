@@ -103,9 +103,8 @@
         <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
           <h3 class="section-title">hot deals</h3>
           <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
+           
             @foreach ($hot_deals as $product )
-              
-            @endforeach
             <div class="item">
               <div class="products">
                 <div class="hot-deal-wrapper"> 
@@ -169,6 +168,7 @@
                 <!-- /.cart --> 
               </div>
             </div>
+            @endforeach
           </div>
           <!-- /.sidebar-widget --> 
         </div>
