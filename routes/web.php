@@ -150,3 +150,6 @@ Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi
 
 // Frontend Product Details Url
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails'])->name('product.details');
+
+// Frontend Product Details Url
+Route::get('/product/tag/{maizgulai}', [IndexController::class, 'TagWiseProduct'])->name('product.details');
