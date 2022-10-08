@@ -312,7 +312,7 @@
               <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
 
               @foreach($categories as $category)
-  <li><a data-transition-type="backSlide" href="#category{{ $category->id }}" data-toggle="tab">{{ $category->category_name_en }}</a></li>
+              <li><a data-transition-type="backSlide" href="#category{{ $category->id }}" data-toggle="tab">{{ $category->category_name_en }}</a></li>
               @endforeach
               <!-- <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
               <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li> -->

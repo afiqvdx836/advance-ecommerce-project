@@ -152,4 +152,7 @@ Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails'])->name('product.details');
 
 // Frontend Product Details Url
-Route::get('/product/tag/{maizgulai}', [IndexController::class, 'TagWiseProduct'])->name('product.details');
+Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
+
+// Frontend Subcategory Product Wise
+Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
