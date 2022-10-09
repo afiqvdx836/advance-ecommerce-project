@@ -396,6 +396,38 @@
 								</div><!-- /.row -->
 							</div><!-- /.price-container -->
 
+
+
+							<!-- Product Color And Size -->
+							<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="info-title control-label">Choose Color <span>*</span></label>
+											<select class="form-control unicase-form-control selectpicker" style="display: none;">
+												<option selected="" disabled="">--Select Size--</option>
+												@foreach ($product_color_en as $color )													
+												<option value="{{ $color }}"> {{$color}}</option>
+												@endforeach
+											</select>
+										</div>
+									</div> <!-- //End col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="info-title control-label">Choose Size <span>*</span></label>
+											<select class="form-control unicase-form-control selectpicker" style="display: none;">
+												<option selected="" disabled="">--Select Size--</option>
+												@foreach($product_size_en as $size)
+												<option value="{{$size}}">{{$size}}</option>
+												@endforeach
+											</select><div class="btn-group bootstrap-select form-control unicase-form-control dropup">
+										</div>
+									</div> <!-- //End col-sm-6 -->
+
+								</div><!-- /.row -->
+
+							
+
 							<div class="quantity-container info-container">
 								<div class="row">
 									
@@ -430,6 +462,7 @@
 							
 						</div><!-- /.product-info -->
 					</div><!-- /.col-sm-7 -->
+					
 				</div><!-- /.row -->
                 </div>
 				
