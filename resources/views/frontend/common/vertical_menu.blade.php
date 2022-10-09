@@ -29,6 +29,8 @@ $subcategories = App\Models\SubCategory::where('category_id',$category->id)->ord
   @if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif
   </h2>
 </a>
+
+
 <!--   // Get SubSubCategory Table Data -->
 @php
 $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
@@ -36,24 +38,24 @@ $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcatego
 
 @foreach($subsubcategories as $subsubcategory)         
                   <ul class="links list-unstyled">
-                    <li><a href="#">
+                    <li><a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en ) }}">
 @if(session()->get('language') == 'hindi') {{ $subsubcategory->subsubcategory_name_hin }} @else {{ $subsubcategory->subsubcategory_name_en }} @endif</a></li>
                     
                   </ul>
 @endforeach <!-- // End SubSubCategory Foreach -->
 
-                </div>
-                <!-- /.col -->
-           @endforeach  <!-- End SubCategory Foreach -->      
-                 
-              </div>
-              <!-- /.row --> 
-            </li>
-            <!-- /.yamm-content -->
-          </ul>
-          <!-- /.dropdown-menu --> </li>
-        <!-- /.menu-item -->
-        @endforeach  <!-- End Category Foreach -->
+    </div>
+    <!-- /.col -->
+@endforeach  <!-- End SubCategory Foreach -->      
+      
+  </div>
+  <!-- /.row --> 
+</li>
+<!-- /.yamm-content -->
+</ul>
+<!-- /.dropdown-menu --> </li>
+<!-- /.menu-item -->
+@endforeach  <!-- End Category Foreach -->
 
 
 
