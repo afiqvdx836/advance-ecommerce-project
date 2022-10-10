@@ -93,7 +93,7 @@
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		  <h5 class="modal-title" id="exampleModalLabel">Product Name</h5>
 		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		  </button>
@@ -104,36 +104,47 @@
 				<div class="col-md-4">
 
 					<div class="card" style="width: 18rem;">
-						<img src="..." class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
+						<img src="..." class="card-img-top" alt="..." style="width: 200px;height:200px">
+						
 						</div>
 
 				</div> <!-- End col-md-4 -->
 
 				<div class="col-md-4">
 					<ul class="list-group">
-						<li class="list-group-item">An item</li>
-						<li class="list-group-item">A second item</li>
-						<li class="list-group-item">A third item</li>
-						<li class="list-group-item">A fourth item</li>
-						<li class="list-group-item">And a fifth one</li>
+						<li class="list-group-item">Product Price: </li>
+						<li class="list-group-item">Product Code:</li>
+						<li class="list-group-item">Category:</li>
+						<li class="list-group-item">Brand:</li>
+						<li class="list-group-item">Stock</li>
 					  </ul>
 				</div> <!-- End col-md-4 -->
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="exampleFormControlSelect1">Example select</label>
+						<label for="exampleFormControlSelect1">Choose Color</label>
 						<select class="form-control" id="exampleFormControlSelect1">
 						  <option>1</option>
 						  <option>2</option>
-						  <option>3</option>
-						  <option>4</option>
-						  <option>5</option>
+						  
 						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">Choose Size</label>
+						<select class="form-control" id="exampleFormControlSelect1">
+						  <option>1</option>
+						  <option>2</option>
+						  
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">Quantity</label>
+						<select class="form-control" id="exampleFormControlSelect1">
+						  <option>1</option>
+						  <option>2</option>
+						  
+						</select>
+					</div>
 				</div> <!-- End col-md-4 -->
 
 			
