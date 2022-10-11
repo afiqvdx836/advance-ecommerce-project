@@ -105,7 +105,7 @@
 				<div class="col-md-4">
 
 					<div class="card" style="width: 18rem;">
-						<img src="..." class="card-img-top" alt="..." style="width: 180px;height:200px" id="pimage">
+						<img src="..." class="card-img-top" alt="..." style="width: 200px;height:200px" id="pimage">
 						
 						</div>
 
