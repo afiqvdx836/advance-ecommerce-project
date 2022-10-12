@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
@@ -163,3 +164,7 @@ Route::get('/subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::cl
 
 // Product View Modal with Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+// Add To cart
+Route::post('/cart/data/stores/{id}', [CartController::class, 'AddToCart']);
+
