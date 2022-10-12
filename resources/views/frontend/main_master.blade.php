@@ -129,25 +129,23 @@
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="exampleFormControlSelect1">Choose Color</label>
-						<select class="form-control" id="exampleFormControlSelect1" name="color">
+						<label for="color">Choose Color</label>
+						<select class="form-control" id="color" name="color">
 						
 						</select>
 					</div>
 					<div class="form-group" id="sizeArea">
-						<label for="exampleFormControlSelect1">Choose Size</label>
-						<select class="form-control" id="exampleFormControlSelect1" name="size">
+						<label for="size">Choose Size</label>
+						<select class="form-control" id="size" name="size">
 						
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="exampleFormControlSelect1">Quantity</label>
-						<select class="form-control" id="exampleFormControlSelect1">
-						  <option>1</option>
-						  <option>2</option>
-						  
-						</select>
+						<label for="qty">Quantity</label>
+						<input type="number" class="form-control" id="qty" value="1" min="1">
 					</div>
+					<input type="hidden" id="product_id">
+					<button type="submit" class="btn btn-primary mb-2" onclick="addToCart()" >Add to Cart</button>
 				</div> <!-- End col-md-4 -->
 
 			
@@ -182,6 +180,10 @@ function productView(id){
 			$('#pcategory').text(data.product.category.category_name_en);
 			$('#pbrand').text(data.product.brand.brand_name_en);
 			$('#pimage').attr('src','/'+data.product.product_thambnail);
+
+			$('#product_id').val(id);
+			$('#qty').val(1);
+
 
 			//Product Price
 			if (data.product.discount_price == null){
@@ -236,7 +238,36 @@ function productView(id){
         }
     })
  
+} // End ProductView Modal
+
+// Start Add to cart product
+
+function addToCart(){
+	var product_name = $('$pname').text();
+	
+	var id = $('#product_id').val();
+
+
+	var color = $('#color option:selected').text();
+	var size = $('#color option:selected').text();
+	var quantity = $('#qty').val();
+
+	$.ajax({
+		type: "POST",
+		dataType: 'json',
+		data:{
+			color:color, size:size, quantity:quantity, product_name:product_name
+		},
+		url: "/cart/data/store/"+id,
+		success:function(data){
+			console.log(data)
+		}
+
+	})
 }
+
+
+// End Add To Cart product
 </script>
 </body>
 </html>
