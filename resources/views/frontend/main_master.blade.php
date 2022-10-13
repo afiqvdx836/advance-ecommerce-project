@@ -65,6 +65,8 @@
 <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<script>
@@ -259,7 +261,31 @@ function addToCart(){
             url: "/cart/data/stores/"+id,
             success:function(data){
                 $('#closeModel').click();
-                console.log(data)
+                // console.log(data)
+
+				//Start Message
+				const Toast = Swal.mixin({
+						toast:true,
+						position: 'top-end',
+						icon: 'success',
+						title: 'Your work has been saved',
+						showConfirmButton: false,
+						timer: 3000
+						})
+
+				if($.isEmptyObject(data.error)){
+					Toast.fire({
+						type:'success',
+						title: data.success
+					})
+				}else{
+					Toast.fire({
+						type: 'error',
+						title: data.error
+					})
+
+				}
+				// End Message
             }
         })
     }
