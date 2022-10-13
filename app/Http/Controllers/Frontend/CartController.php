@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
-
 
 class CartController extends Controller
 {
@@ -18,7 +17,7 @@ class CartController extends Controller
     		Cart::add([
     			'id' => $id, 
     			'name' => $request->product_name, 
-            'qty' => $request->quantity, 
+    			'qty' => $request->quantity, 
     			'price' => $product->selling_price,
     			'weight' => 1, 
     			'options' => [
@@ -29,7 +28,7 @@ class CartController extends Controller
     		]);
 
     		return response()->json(['success' => 'Successfully Added on Your Cart']);
-
+    		 
     	}else{
 
     		Cart::add([
@@ -49,18 +48,24 @@ class CartController extends Controller
 
     } // end mehtod 
 
-    // mini cart section
+
+    // Mini Cart Section
     public function AddMiniCart(){
-        $carts = Cart::content();
-        $cartQty = Cart::count();
-        $carTotal = Cart::total();
 
-        return response()->json(array(
-            'carts' => $carts,
-            'cartQty' => $cartQty,
-            'carTotal' => round($carTotal),
+    	$carts = Cart::content();
+    	$cartQty = Cart::count();
+    	$cartTotal = Cart::total();
 
-        ));
+    	return response()->json(array(
+    		'carts' => $carts,
+    		'cartQty' => $cartQty,
+    		'cartTotal' => round($cartTotal),
 
-    } // end method
+    	));
+    } // end method 
+
+
+
+
 }
+ 
