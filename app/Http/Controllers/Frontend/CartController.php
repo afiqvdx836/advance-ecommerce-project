@@ -18,7 +18,7 @@ class CartController extends Controller
     		Cart::add([
     			'id' => $id, 
     			'name' => $request->product_name, 
-    			'qty' => $request->quantity, 
+            'qty' => $request->quantity, 
     			'price' => $product->selling_price,
     			'weight' => 1, 
     			'options' => [
@@ -48,4 +48,19 @@ class CartController extends Controller
     	}
 
     } // end mehtod 
+
+    // mini cart section
+    public function AddMiniCart(){
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $carTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'carTotal' => round($carTotal),
+
+        ));
+
+    } // end method
 }
