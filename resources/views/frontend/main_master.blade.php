@@ -375,14 +375,37 @@ function addToCart(){
 <!--// Start Add Wishlist Page-->
 <script type="text/javascript">
 	
-	function miniCartRemove(product_id){
+	function addToWishList(product_id){
 		$.ajax({
 			type: "POST",
 			dataType: 'json',
 			url: "/add-to-wishlist/"+product_id,
 
 			success:function(data){
-				
+				//Start Message
+
+				const Toast = Swal.mixin({
+						toast: true,
+						position: 'top-end',
+						icon: 'success',
+						showConfirmButton: false,
+						timer: 3000
+					})
+
+					if ($.isEmptyObject(data.error)){
+						Toast.fire({
+							type: 'success',
+							icon: 'success',
+							title: data.success
+						})
+					} else{
+						Toast.fire({
+							type:'error',
+							icon:'error',
+							title:data.error
+						})
+					}
+
 			}
 		})
 	}
