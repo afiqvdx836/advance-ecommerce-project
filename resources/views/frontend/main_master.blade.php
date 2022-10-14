@@ -318,7 +318,8 @@ function addToCart(){
                       <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
                       <div class="price">${value.price}  * ${value.qty}</div>
                     </div>
-                    <div class="col-xs-1 action"> <button type="submit" id="${value.rowId}" onClick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
+                    <div class="col-xs-1 action">
+						<button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
                   </div>
                 </div>
                 <!-- /.cart-item -->
@@ -337,7 +338,7 @@ function addToCart(){
 	 function miniCartRemove(rowId){
 		$.ajax({
 			type: 'GET',
-			url: '/minicart/product-remove'+rowId,
+			url: '/minicart/product-remove/'+rowId,
 			dataType: 'json',
 			success:function(data){
 				miniCart();
@@ -370,6 +371,25 @@ function addToCart(){
 	 // end miini cart remove
 
 </script>
+
+<!--// Start Add Wishlist Page-->
+<script type="text/javascript">
+	
+	function miniCartRemove(product_id){
+		$.ajax({
+			type: "POST",
+			dataType: 'json',
+			url: "/add-to-wishlist/"+product_id,
+
+			success:function(data){
+				
+			}
+		})
+	}
+</script>
+
+<!--// End Add Wishlist Page-->
+
 
 
 </body>
