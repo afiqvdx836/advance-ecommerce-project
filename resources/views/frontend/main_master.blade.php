@@ -319,7 +319,9 @@ function addToCart(){
                       <div class="price">${value.price}  * ${value.qty}</div>
                     </div>
                     <div class="col-xs-1 action">
-						<button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
+						<button type="submit" class="" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+
+						</div>
                   </div>
                 </div>
                 <!-- /.cart-item -->
@@ -454,7 +456,7 @@ function addToCart(){
 						<button  class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product.id}" onclick="productView(this.id)"> Add To Cart </button>
 					</td>
 					<td class="col-md-1 close-btn">
-						<a href="#" class=""><i class="fa fa-times"></i></a>
+						<button href="#" id="${value.id}" class="" onClick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
 					</td>
 				</tr>`
                 });
@@ -465,7 +467,50 @@ function addToCart(){
      }
 
 	 wishlist();
+	 
+	 
+	 //remove product wishlist-->
+	 function wishlistRemove(id){
+		$.ajax({
+			type: 'GET',
+            url: '/wishlist-remove/'+id,
+            dataType:'json',
+            success:function(data){
+            wishlist();
+
+				//Start Message
+
+					const Toast = Swal.mixin({
+						toast: true,
+						position: 'top-end',
+					
+						showConfirmButton: false,
+						timer: 3000
+					})
+
+					if ($.isEmptyObject(data.error)){
+						Toast.fire({
+							type: 'success',
+							icon: 'success',
+							title: data.success
+						})
+					} else{
+						Toast.fire({
+							type:'error',
+							icon:'error',
+							title:data.error
+						})
+					}
+			}
+		});
+	 }
+
+
+
 </script>
+
+
+
 
 </body>
 </html>
