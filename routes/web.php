@@ -179,7 +179,11 @@ Route::get('/minicart/product-remove/{rowId}',[CartController::class, 'RemoveMin
 // Add To Wishlist
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
 
-Route::get('/wishlists',[WishlistController::class, 'ViewWishList'])->name('wishlist');
+
+Route::group(['prefix' =>'user', 'middleware' => ['user','auth'], 'namespace'=>'User'],
+function(){
+
+    Route::get('/wishlists',[WishlistController::class, 'ViewWishList'])->name('wishlist');
 
 
 // Get Wishlist Product list
@@ -188,3 +192,6 @@ Route::get('/get-wishlist-product',[WishlistController::class, 'GetWishListProdu
 
 
 Route::get('/wishlist-remove/{id}',[WishlistController::class, 'RemoveWishlistProduct']);
+
+
+});

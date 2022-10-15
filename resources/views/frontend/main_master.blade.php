@@ -420,7 +420,7 @@ function addToCart(){
 	function wishlist(){
 		$.ajax({
 			type: 'GET',
-			url: '/get-wishlist-product',
+			url: '/user/get-wishlist-product',
 			dataType: 'json',
 			success:function(response){
 				var rows = ""
@@ -473,7 +473,7 @@ function addToCart(){
 	 function wishlistRemove(id){
 		$.ajax({
 			type: 'GET',
-            url: '/wishlist-remove/'+id,
+            url: 'user/wishlist-remove/'+id,
             dataType:'json',
             success:function(data){
             wishlist();
