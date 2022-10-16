@@ -296,122 +296,86 @@ function addToCart(){
 
 
 <script type="text/javascript">
-	function miniCart(){
-		$.ajax({
-			type: 'GET',
-			url: '/product/mini/cart',
-			dataType: 'json',
-			success:function(response){
+    function miniCart(){
+        $.ajax({
+            type: 'GET',
+            url: '/product/mini/cart',
+            dataType:'json',
+            success:function(response){
 
-				$('span[id="cartSubTotal"]').text(response.cartTotal);
+                $('span[id="cartSubTotal"]').text(response.cartTotal);
                 $('#cartQty').text(response.cartQty);
-				var miniCart = ""
-
+                var miniCart = ""
 
                 $.each(response.carts, function(key,value){
                     miniCart += `<div class="cart-item product-summary">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="image"> <a href="detail.html"><img src="/${value.options.image}" alt=""></a> </div>
-                    </div>
-                    <div class="col-xs-7">
-                      <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
-                      <div class="price">${value.price}  * ${value.qty}</div>
-                    </div>
-                    <div class="col-xs-1 action">
-						<button type="submit" class="" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
-
-						</div>
-                  </div>
-                </div>
-                <!-- /.cart-item -->
-                <div class="clearfix"></div>
-                <hr>`
-                });
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="image"> <a href="detail.html"><img src="/${value.options.image}" alt=""></a> </div>
+            </div>
+            <div class="col-xs-7">
+              <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+              <div class="price"> ${value.price} * ${value.qty} </div>
+            </div>
+            <div class="col-xs-1 action"> 
+            <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
+          </div>
+        </div>
+        <!-- /.cart-item -->
+        <div class="clearfix"></div>
+        <hr>`
+        });
                 
                 $('#miniCart').html(miniCart);
             }
         })
+
      }
+ miniCart();
 
-	miniCart();
+ /// mini cart remove Start 
+    function miniCartRemove(rowId){
+        $.ajax({
+            type: 'GET',
+            url: '/minicart/product-remove/'+rowId,
+            dataType:'json',
+            success:function(data){
+            miniCart();
 
-	// mini Cart remove Start
-	 function miniCartRemove(rowId){
-		$.ajax({
-			type: 'GET',
-			url: '/minicart/product-remove/'+rowId,
-			dataType: 'json',
-			success:function(data){
-				miniCart();
+             // Start Message 
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
 
-				//Start Message
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
 
-					const Toast = Swal.mixin({
-						toast: true,
-						position: 'top-end',
-						icon: 'success',
-						showConfirmButton: false,
-						timer: 3000
-					})
+                }
 
-					if ($.isEmptyObject(data.error)){
-						Toast.fire({
-							type: 'success',
-							title: data.success
-						})
-					} else{
-						Toast.fire({
-							type:'error',
-							title:data.error
-						})
-					}
-			}
-		});
-	 }
+                // End Message 
 
-	 // end miini cart remove
+            }
+        });
+
+    }
+
+ //  end mini cart remove 
+
 
 </script>
 
-<!--// Start Add Wishlist Page-->
-<script type="text/javascript">
-	
-	function addToWishList(product_id){
-		$.ajax({
-			type: "POST",
-			dataType: 'json',
-			url: "/add-to-wishlist/"+product_id,
-
-			success:function(data){
-				//Start Message
-
-				const Toast = Swal.mixin({
-						toast: true,
-						position: 'top-end',
-						icon: 'success',
-						showConfirmButton: false,
-						timer: 3000
-					})
-
-					if ($.isEmptyObject(data.error)){
-						Toast.fire({
-							type: 'success',
-							icon: 'success',
-							title: data.success
-						})
-					} else{
-						Toast.fire({
-							type:'error',
-							icon:'error',
-							title:data.error
-						})
-					}
-
-			}
-		})
-	}
-</script>
 
 <!--// End Add Wishlist Page-->
 

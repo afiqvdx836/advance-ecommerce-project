@@ -27,7 +27,7 @@ class CartController extends Controller
     				'image' => $product->product_thambnail,
     				'color' => $request->color,
     				'size' => $request->size,
-    			],
+    			], 
     		]);
 
     		return response()->json(['success' => 'Successfully Added on Your Cart']);
@@ -52,20 +52,21 @@ class CartController extends Controller
     } // end mehtod 
 
 
-    // Mini Cart Section
-    public function AddMiniCart(){
+        // Mini Cart Section
+		public function AddMiniCart(){
 
-    	$carts = Cart::content();
-    	$cartQty = Cart::count();
-    	$cartTotal = Cart::total();
-
-    	return response()->json(array(
-    		'carts' => $carts,
-    		'cartQty' => $cartQty,
-    		'cartTotal' => round($cartTotal),
-
-    	));
-    } // end method 
+			$carts = Cart::content();
+			$cartQty = Cart::count();
+			$cartTotal = Cart::total();
+	
+			return response()->json(array(
+				'carts' => $carts,
+				'cartQty' => $cartQty,
+				'cartTotal' => $cartTotal,
+	
+			));
+		} // end method 
+	
 
         //Remove Mini Cart Section
         public function RemoveMiniCart($rowId){
