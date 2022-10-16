@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -194,4 +195,10 @@ Route::get('/get-wishlist-product',[WishlistController::class, 'GetWishListProdu
 Route::get('/wishlist-remove/{id}',[WishlistController::class, 'RemoveWishlistProduct']);
 
 
+Route::get('/mycart',[CartPageController::class, 'MyCart'])->name('mycart');
+
+Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+
+
 });
+
