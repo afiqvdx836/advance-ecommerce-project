@@ -61,8 +61,8 @@
                                 
                                 </td>
                                 <td width="25%">
-                                  <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
-                                  <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
+                                  <a href="{{ route('coupon.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                  <a href="{{ route('coupon.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                               </td>     
                            
                           </tr>
