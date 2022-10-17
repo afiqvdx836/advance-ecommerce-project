@@ -437,7 +437,7 @@ function addToCart(){
 	 function wishlistRemove(id){
 		$.ajax({
 			type: 'GET',
-            url: 'user/wishlist-remove/'+id,
+            url: '/user/wishlist-remove/'+id,
             dataType:'json',
             success:function(data){
             wishlist();
@@ -508,11 +508,10 @@ function addToCart(){
 
 
 					<td class="col-md-2">
-						<button type="submit" class="btn btn-success btn-sm">+</button>     
-					<input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" >      
-					<button type="submit" class="btn btn-danger btn-sm">-</button>  
-						</td>
-						
+						<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onClick="cartDecrement(this.id)">-</button>  
+						<input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" >      
+						<button type="submit" class="btn btn-success btn-sm " id="${value.rowId}" onClick="cartIncrement(this.id)">+</button>     
+						</td> 
 						
 						<td class="col-md-2">
 							<strong>$${value.subtotal} </strong> 
@@ -568,10 +567,25 @@ function addToCart(){
 			}
 		});
 	 }
+// End Car Increment
 
+ // -------- CART INCREMENT --------//
+ function cartIncrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-increment/"+rowId,
+            dataType:'json',
+            success:function(data){
+                cart();
+                miniCart();
+            }
+        });
+    }
 
 
 </script>
+
+
 
 <!-- end Load my cart-->
 

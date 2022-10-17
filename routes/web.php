@@ -194,15 +194,16 @@ Route::get('/get-wishlist-product',[WishlistController::class, 'GetWishListProdu
 
 Route::get('/wishlist-remove/{id}',[WishlistController::class, 'RemoveWishlistProduct']);
 
+});
 
+
+// PAge Cart All Routes
 Route::get('/mycart',[CartPageController::class, 'MyCart'])->name('mycart');
 
-Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+Route::get('/user/get-cart-product', [CartPageController::class, 'GetCartProduct']);
 
-Route::get('/cart-remove/{rowId}',[CartPageController::class, 'RemoveCartProduct']);
+Route::get('/user/cart-remove/{rowId}',[CartPageController::class, 'RemoveCartProduct']);
 
+Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
 
-
-
-});
 
