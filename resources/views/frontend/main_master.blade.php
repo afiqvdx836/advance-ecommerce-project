@@ -337,7 +337,7 @@ function addToCart(){
     function miniCartRemove(rowId){
         $.ajax({
             type: 'GET',
-            url: '/minicart/product-remove/'+rowId,
+            url: 'user/cart-remove/'+rowId,
             dataType:'json',
             success:function(data){
             miniCart();
@@ -520,7 +520,7 @@ function addToCart(){
 
 					
 					<td class="col-md-1 close-btn">
-						<button href="#" id="${value.id}" class="" onClick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+						<button href="#" id="${value.rowId}" class="" onClick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
 					</td>
 				</tr>`
                 });
@@ -533,38 +533,38 @@ function addToCart(){
 	 cart();
 	 
 	 
-	 //remove product wishlist-->
-	 function wishlistRemove(id){
-		$.ajax({
-			type: 'GET',
-            url: 'user/wishlist-remove/'+id,
+	 //remove product cart-->
+	 function cartRemove(id){
+        $.ajax({
+            type: 'GET',
+            url: '/user/cart-remove/'+id,
             dataType:'json',
             success:function(data){
-            wishlist();
+            cart();
+			miniCart();
 
-				//Start Message
-
-					const Toast = Swal.mixin({
-						toast: true,
-						position: 'top-end',
-					
-						showConfirmButton: false,
-						timer: 3000
-					})
-
-					if ($.isEmptyObject(data.error)){
-						Toast.fire({
-							type: 'success',
-							icon: 'success',
-							title: data.success
-						})
-					} else{
-						Toast.fire({
-							type:'error',
-							icon:'error',
-							title:data.error
-						})
-					}
+				 // Start Message 
+				 const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message 
 			}
 		});
 	 }
