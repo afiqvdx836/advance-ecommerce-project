@@ -52,15 +52,17 @@
                                 <td>{{ $item->coupon_validity }}</td>
                                 <td>
 
-                                    @if ($item->coupon_status == 1)
+                                    @if ($item->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
                                     <span class="badge badge-pill badge-success"> Active </span>
-
                                     @else
                                     <span class="badge badge-pill badge-danger"> InActive </span>
                                     @endif
                                 
                                 </td>
-                                
+                                <td width="25%">
+                                  <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                  <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
+                              </td>     
                            
                           </tr>
                         @endforeach
@@ -90,7 +92,7 @@
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
-                    <form method="post" action="{{ route('category.store') }}" enctype="multipart/form-data" >
+                    <form method="post" action="{{ route('coupon.store') }}" enctype="multipart/form-data" >
                         @csrf
                
                
@@ -117,7 +119,7 @@
                     <div class="form-group">
                        <h5>Coupon Validity  <span class="text-danger">*</span></h5>
                        <div class="controls">
-                    <input type="date"  name="coupon_validity" class="form-control"  > </div>
+                    <input type="date"  name="coupon_validity" class="form-control" min="{{Carbon\Carbon::now()->format('Y-m-d')}}"  > </div>
                    </div>
                
                    @error('coupon_validity')
