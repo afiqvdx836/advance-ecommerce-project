@@ -89,23 +89,17 @@
 		
      
 		  
-        <li class="treeview">
+        <li class="treeview {{ ($prefix == '/coupons'?'active':'') }}">
           <a href="#">
             <i data-feather="grid"></i>
-            <span>Components</span>
+            <span>Coupons</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-            <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-            <li><a href="components_sliders.html"><i class="ti-more"></i>Sliders</a></li>
-            <li><a href="components_dropdown.html"><i class="ti-more"></i>Dropdown</a></li>
-            <li><a href="components_modals.html"><i class="ti-more"></i>Modal</a></li>
-            <li><a href="components_nestable.html"><i class="ti-more"></i>Nestable</a></li>
-            <li><a href="components_progress_bars.html"><i class="ti-more"></i>Progress Bars</a></li>
+            <li class="{{ ($route == 'manage.coupon')? 'active':'' }}"><a href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage coupon</a></li>
+            
           </ul>
         </li>
 		

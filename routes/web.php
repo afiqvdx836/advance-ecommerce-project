@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
@@ -129,6 +130,11 @@ Route::prefix('slider')->group(function(){
 
 });
 
+Route::prefix('coupons')->group(function(){
+    Route::get('/view', [CouponController::class, 'CouponView'])->name('manage.coupon');
+   
+
+});
 
 });// admin middleware
 
