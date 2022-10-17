@@ -48,8 +48,9 @@
                         @foreach ($coupons as $item)
                           <tr>
                                 <td>{{ $item->coupon_name }}</td>
-                                <td>{{ $item->coupon_discount }}</td>
-                                <td>{{ $item->coupon_validity }}</td>
+                                <td>{{ $item->coupon_discount }}%</td>
+                                <td>{{ Carbon\Carbon::parse($item->coupon_validity)->format('D, d F Y') }}</td>
+                                
                                 <td>
 
                                     @if ($item->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
