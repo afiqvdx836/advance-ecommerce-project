@@ -37,6 +37,7 @@
                       <thead>
                           <tr>
                             <th>District Name </th>
+                            <th>Division Name </th>
                             <th>Action</th>
                             
                               
@@ -45,12 +46,12 @@
                       <tbody>
                         @foreach ($district as $item)
                           <tr>
-                                <td>{{ $item->division_id}}</td>
+                                <td>{{ $item->division->division_name}}</td>
                                 <td>{{ $item->district_name }}</td>
                                 
                                 <td width="40%">
-                                  <a href="{{ route('division.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
-                                  <a href="{{ route('coupon.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
+                                  <a href="{{ route('district.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                  <a href="{{ route('district.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                               </td>     
                            
                           </tr>
@@ -81,7 +82,7 @@
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
-                    <form method="post" action="{{ route('division.store') }}" enctype="multipart/form-data" >
+                    <form method="post" action="{{ route('district.store') }}" enctype="multipart/form-data" >
                         @csrf
                
                
@@ -92,7 +93,6 @@
                             @foreach ($division as $div )
                                 <option value="{{$div->id}}">{{$div->division_name}}</option>
                             @endforeach
-                            
 
                         </select>
                         </div>
@@ -108,7 +108,7 @@
                  <input type="text"  name="district_name" class="form-control" > </div>
                 </div>
             
-                @error('division_name')
+                @error('district_name')
                  <span class="text-danger">{{$message}}</span>
                 @enderror
 
