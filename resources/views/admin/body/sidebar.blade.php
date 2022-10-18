@@ -112,7 +112,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-			<li class="{{ ($route == 'manage.division')? 'active':'' }}"><"><a href="{{route('manage.division')}}"><i class="ti-more"></i>Manage Division</a></li>
+			<li class="{{ ($route == 'manage.division')? 'active':'' }}"><a href="{{route('manage.division')}}"><i class="ti-more"></i>Manage Division</a></li>
+			<li class="{{ ($route == 'manage.district')? 'active':'' }}"><a href="{{route('manage.district')}}"><i class="ti-more"></i>Manage District</a></li>
 			<li><a href="card_basic.html"><i class="ti-more"></i>Basic Cards</a></li>
 			<li><a href="card_color.html"><i class="ti-more"></i>Cards Color</a></li>
 		  </ul>
