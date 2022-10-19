@@ -154,6 +154,15 @@ Route::prefix('shipping')->group(function(){
     Route::post('/district/update/{id}', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
     Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
 
+    // Ship State
+    Route::get('/state/view', [ShippingAreaController::class, 'StateView'])->name('manage.state');
+    Route::post('/State/store', [ShippingAreaController::class, 'StateStore'])->name('state.store');
+    Route::get('/State/edit/{id}', [ShippingAreaController::class, 'StateEdit'])->name('state.edit');
+    Route::post('/State/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
+    Route::get('/State/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
+
+    // End Ship State
+
 });
 
 });// admin middleware

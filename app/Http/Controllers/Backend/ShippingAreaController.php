@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\ShipState;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
@@ -124,6 +125,35 @@ class ShippingAreaController extends Controller
             'alert-type' => 'success'
         );
     
+        return redirect()->back()->with($notification);
+    }
+
+    public function StateView(){
+        $division = ShipDivision::orderBy('division_name','ASC')->get();
+        $district = ShipDistrict::orderBy('district_name','ASC')->get();
+        $state = ShipState::orderBy('id','ASC')->get();
+
+        return view('backend.ship.state.view_state', compact('district','division','state'));
+    }
+
+    public function StateStore(Request $request){
+        $request->validate([
+            'division_id' => 'required',  
+            'district_id' => 'required',  
+    		'state_name' => 'required', 
+        ]);
+
+        ShipState::insert([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'state_name'=> $request->state_name,
+            'created_at' =>Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Ship District Added Successfully',
+            'alert-type' => 'success'
+        );
         return redirect()->back()->with($notification);
     }
 }
