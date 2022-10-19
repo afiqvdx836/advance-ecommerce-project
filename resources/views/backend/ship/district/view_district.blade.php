@@ -36,8 +36,8 @@
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                           <tr>
-                            <th>District Name </th>
                             <th>Division Name </th>
+                            <th>District Name </th>
                             <th>Action</th>
                             
                               

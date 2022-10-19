@@ -161,6 +161,8 @@ Route::prefix('shipping')->group(function(){
     Route::post('/State/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
     Route::get('/State/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 
+
+    // Route::get('/division/district/ajax/{division_id}', [ShippingAreaController::class, 'GetDistrictDivision']);
     // End Ship State
 
 });

@@ -131,7 +131,7 @@ class ShippingAreaController extends Controller
     public function StateView(){
         $division = ShipDivision::orderBy('division_name','ASC')->get();
         $district = ShipDistrict::orderBy('district_name','ASC')->get();
-        $state = ShipState::orderBy('id','ASC')->get();
+        $state = ShipState::with('division','district')->orderBy('id','ASC')->get();
 
         return view('backend.ship.state.view_state', compact('district','division','state'));
     }
@@ -154,6 +154,40 @@ class ShippingAreaController extends Controller
             'message' => 'Ship District Added Successfully',
             'alert-type' => 'success'
         );
+        return redirect()->back()->with($notification);
+    }
+
+    public function StateEdit($id){
+        $division = ShipDivision::orderBy('division_name','ASC')->get();
+        $district = ShipDistrict::orderBy('district_name','ASC')->get();
+        $state = ShipState::findOrFail($id);
+
+        return view('backend.ship.state.edit_state', compact('district','division','state'));
+    }
+
+    public function StateUpdate(Request $request, $id){
+        ShipState::findOrFail($id)->update([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'state_name'=> $request->state_name,
+            'created_at' =>Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Ship State Updated Successfully',
+            'alert-type' => 'success'
+        );
+    
+        return redirect()->route('manage.state')->with($notification);
+    }
+
+    public function StateDelete($id){
+        ShipState::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Ship State Deleted Successfully',
+            'alert-type' => 'success'
+        );
+    
         return redirect()->back()->with($notification);
     }
 }

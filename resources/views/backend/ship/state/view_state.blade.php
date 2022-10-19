@@ -36,8 +36,8 @@
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                           <tr>
-                            <th>District Name </th>
                             <th>Division Name </th>
+                            <th>District Name </th>
                             <th>State Name </th>
                             <th>Action</th>
                             
@@ -47,13 +47,13 @@
                       <tbody>
                         @foreach ($state as $item)
                           <tr>
-                                <td>{{ $item->division_id}}</td>
-                                <td>{{ $item->district_id}}</td>
+                                <td>{{ $item->division->division_name}}</td>
+                                <td>{{ $item->district->district_name}}</td>
                                 <td>{{ $item->state_name }}</td>
                                 
                                 <td width="40%">
-                                  <a href="{{ route('district.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
-                                  <a href="{{ route('district.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
+                                  <a href="{{ route('state.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                  <a href="{{ route('state.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                               </td>     
                            
                           </tr>
@@ -91,11 +91,11 @@
                     <div class="form-group">
                        <h5>Division Select  <span class="text-danger">*</span></h5>
                        <div class="controls">
-                        <select name="division_id" class="form-control">
-                            @foreach ($division as $div )
-                                <option value="{{$div->id}}">{{$div->division_name}}</option>
-                            @endforeach
-
+                        <select name="division_id" class="form-control" required="" >
+                          <option value="" selected="" disabled="">Select Division</option>
+                           @foreach ($division as $div )
+                           <option value="{{$div->id}}" > {{$div->division_name }}</option> 
+                           @endforeach
                         </select>
                         </div>
                    </div>
@@ -103,12 +103,12 @@
                    <div class="form-group">
                     <h5>District Select  <span class="text-danger">*</span></h5>
                     <div class="controls">
-                     <select name="district_id" class="form-control">
-                         @foreach ($district as $dist )
-                             <option value="{{$dist->id}}">{{$dist->district_name}}</option>
-                         @endforeach
-
-                     </select>
+                      <select name="district_id" class="form-control" required="" >
+                        <option value="" selected="" disabled="">Select District</option>
+                            @foreach ($district as $dist )
+                            <option value="{{$dist->id}}" > {{$dist->district_name }}</option> 
+                            @endforeach
+                      </select>
                      </div>
                 </div>
                
@@ -148,5 +148,4 @@
     
     </div>
 
-    
 @endsection
