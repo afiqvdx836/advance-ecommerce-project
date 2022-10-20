@@ -169,6 +169,8 @@ Route::prefix('shipping')->group(function(){
 
 });// admin middleware
 
+//Frontend Coupon Option
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 
 
 // USER ALL ROUTES
