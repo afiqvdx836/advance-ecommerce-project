@@ -643,6 +643,17 @@ function cartDecrement(rowId){
 		  }
 	  })
 	}  
+
+	function couponCalculation(){
+		$.ajax({
+			type: 'GET',
+			url: "{{ url('/coupon-calculation')}}",
+			dataType: 'json',
+			success:function(data){
+				
+			}
+		})
+	}
   </script>
   
   

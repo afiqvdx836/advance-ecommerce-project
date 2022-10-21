@@ -116,7 +116,7 @@ class CartController extends Controller
 					'coupon_name' => $coupon->coupon_name,
 					'coupon_discount' => $coupon->coupon_discount,
 					'discount_amount' =>  round(Cart::total() * $coupon->coupon_discount/100,),
-					'total_amount' => round($total - $total * $coupon->coupon_discount/100),
+					'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
 					
 				]);
 
@@ -129,6 +129,23 @@ class CartController extends Controller
 
 			}
 
+		}// end method
+
+
+		public function CouponCalculation(){
+			if(Session::has('coupon')){
+				return response()->json(array(
+					'subtotal' => Cart::total(),
+					'coupon_name' => Session()->get('coupon')['coupon_name'],
+					'coupon_discount' => Session()->get('coupon')['coupon_discount'],
+					'discount_amount' => Session()->get('coupon')['discount_amount'],
+					'total_amount' => Session()->get('coupon')['total_amount'],
+				));
+			} else{
+				return response()->json(array(
+					'total' => Cart::total(),
+				));
+			}
 		}// end method
 	}
 
