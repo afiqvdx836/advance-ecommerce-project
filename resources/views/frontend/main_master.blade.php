@@ -92,7 +92,7 @@
 	@endif 
 	</script>
 
-	<!--Add To Cart Product Modal -->
+	<!--to To Cart Product Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
@@ -542,8 +542,12 @@ function addToCart(){
             url: '/user/cart-remove/'+id,
             dataType:'json',
             success:function(data){
+			couponCalculation();
             cart();
+			
 			miniCart();
+			$('#couponField').show();
+            $('#coupon_name').val('');
 
 				 // Start Message 
 				 const Toast = Swal.mixin({
@@ -579,6 +583,7 @@ function addToCart(){
             url: "/cart-increment/"+rowId,
             dataType:'json',
             success:function(data){
+				couponCalculation();
                 cart();
                 miniCart();
             }
@@ -594,6 +599,7 @@ function cartDecrement(rowId){
             url: "/cart-decrement/"+rowId,
             dataType:'json',
             success:function(data){
+				couponCalculation();
                 cart();
                 miniCart();
             }
@@ -703,17 +709,18 @@ function cartDecrement(rowId){
 <!--  //////////////// =========== Start Coupon Remove================= ////  -->
 
 <script type="text/javascript">
-	function couponRemove(){
-		$.ajax({
+
+     function couponRemove(){
+        $.ajax({
             type:'GET',
             url: "{{ url('/coupon-remove') }}",
             dataType: 'json',
             success:function(data){
                 couponCalculation();
-			$('#couponField').show();
+                $('#couponField').show();
                 $('#coupon_name').val('');
-		    // Start Message 
-			const Toast = Swal.mixin({
+                 // Start Message 
+                const Toast = Swal.mixin({
                       toast: true,
                       position: 'top-end',
                       
@@ -734,9 +741,11 @@ function cartDecrement(rowId){
                     })
                 }
                 // End Message 
-			}
+            }
         });
      }
+
+	 
 </script>
 
 <!--  //////////////// =========== End Coupon Remove Coupon Remove================= ////  -->
