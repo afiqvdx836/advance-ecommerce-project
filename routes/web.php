@@ -140,6 +140,10 @@ Route::prefix('coupons')->group(function(){
 
 });
 
+//Checkout Routes
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+
 
 Route::prefix('shipping')->group(function(){
     Route::get('/division/view', [ShippingAreaController::class, 'DivisionView'])->name('manage.division');
@@ -251,5 +255,7 @@ Route::get('/user/cart-remove/{rowId}',[CartPageController::class, 'RemoveCartPr
 Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
 
 Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+
+
 
 
