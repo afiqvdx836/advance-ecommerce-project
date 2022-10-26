@@ -6,6 +6,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SliderController;
@@ -178,8 +179,16 @@ Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
+
+
+
 //Checkout Routes
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'DistrictGetAjax']);
+
+Route::get('/state-get/ajax/{district_id}', [CheckoutController::class, 'StateGetAjax']);
+
 
 
 // USER ALL ROUTES
@@ -242,6 +251,8 @@ Route::get('/get-wishlist-product',[WishlistController::class, 'GetWishListProdu
 
 Route::get('/wishlist-remove/{id}',[WishlistController::class, 'RemoveWishlistProduct']);
 
+
+
 });
 
 
@@ -255,6 +266,7 @@ Route::get('/user/cart-remove/{rowId}',[CartPageController::class, 'RemoveCartPr
 Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
 
 Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+
 
 
 
