@@ -1,6 +1,6 @@
 @extends('frontend.main_master')
 @section('content')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @section('title')
     My Checkout
 @endsection
@@ -57,24 +57,61 @@
 					    <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder="Post Code" name="post_code" >
 					  </div>
 					  <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-					</form>
+				
 				</div>	
 				<!-- guest-login -->
 
 				<!-- already-registered-login -->
 				<div class="col-md-6 col-sm-6 already-registered-login">
-					<h4 class="checkout-subtitle">Already registered?</h4>
-					<p class="text title-tag-line">Please log in below:</p>
-					<form class="register-form" role="form">
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-					    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="">
-					  </div>
-					  <div class="form-group">
-					    <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-					    <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder="">
-					    <a href="#" class="forgot-password">Forgot your Password?</a>
-					  </div>
+					
+					
+				<div class="form-group">
+					<h5><b>Division Select</b> <span class="text-danger">*</span></h5>
+					<div class="controls">
+						<select name="division_id" class="form-control" required="" >
+							<option value="" selected="" disabled="">Select Division</option>
+							@foreach($divisions as $item)
+					<option value="{{ $item->id }}">{{ $item->division_name }}</option>	
+							@endforeach
+						</select>
+						@error('division_id') 
+						<span class="text-danger">{{ $message }}</span>
+						@enderror 
+						</div>
+				</div> <!-- End Form group-->
+
+				<div class="form-group">
+					<h5><b>District Select </b><span class="text-danger">*</span></h5>
+					<div class="controls">
+						<select name="district_id" class="form-control" required="" >
+							<option value="" selected="" disabled="">Select District</option>
+						
+						</select>
+						@error('district_id') 
+						<span class="text-danger">{{ $message }}</span>
+						@enderror 
+						</div>
+				</div> <!-- End Form group-->
+
+				<div class="form-group">
+					<h5><b>State Select </b><span class="text-danger">*</span></h5>
+					<div class="controls">
+						<select name="state_id" class="form-control" required="" >
+							<option value="" selected="" disabled="">Select State</option>
+							
+						</select>
+						@error('state_id') 
+						<span class="text-danger">{{ $message }}</span>
+						@enderror 
+						</div>
+				</div> <!-- End Form group-->
+				
+				
+				<div class="form-group">
+					<label class="info-title" for="exampleInputEmail1"><b>Notes</b> <span>*</span></label>
+						<textarea class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"></textarea>
+					 </div>  <!-- // end form group  -->
+							
 					  <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
 					</form>
 				</div>	

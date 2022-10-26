@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\Wishlist;
+use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -165,9 +166,10 @@ class CartController extends Controller
 			$carts = Cart::content();
 			$cartQty = Cart::count();
 			$cartTotal = Cart::total();
+			$divisions =  ShipDivision::orderBy('division_name','ASC')->get();
 	
 	
-			return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal'));
+			return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','divisions'));
 	
 				}else{
 	
