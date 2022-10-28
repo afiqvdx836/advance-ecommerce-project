@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
@@ -244,16 +245,14 @@ Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishl
 Route::group(['prefix' =>'user', 'middleware' => ['user','auth'], 'namespace'=>'User'],
 function(){
 
-    Route::get('/wishlists',[WishlistController::class, 'ViewWishList'])->name('wishlist');
-
-
 // Get Wishlist Product list
+Route::get('/wishlists',[WishlistController::class, 'ViewWishList'])->name('wishlist');
+
 Route::get('/get-wishlist-product',[WishlistController::class, 'GetWishListProduct']);
-
-
 
 Route::get('/wishlist-remove/{id}',[WishlistController::class, 'RemoveWishlistProduct']);
 
+Route::post('/stripe/order',[StripeController::class, 'StripeOrder'])->name('stripe.order');
 
 
 });
