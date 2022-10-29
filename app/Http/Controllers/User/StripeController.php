@@ -15,7 +15,7 @@ class StripeController extends Controller
 	$token = $_POST['stripeToken'];
 	$charge = \Stripe\Charge::create([
 	  'amount' => 999*100,
-	  'currency' => 'usd',
+	  'currency' => 'myr',
 	  'description' => 'Easy Online Store',
 	  'source' => $token,
 	  'metadata' => ['order_id' => '6735'],
