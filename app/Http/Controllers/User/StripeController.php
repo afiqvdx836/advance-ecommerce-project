@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -32,7 +34,7 @@ class StripeController extends Controller
 	  'metadata' => ['order_id' => uniqid()],
 	]);
 
-	dd($charge);
+	// dd($charge);
 
     $order_id = Order::insertGetId([
         'user_id' => Auth::id(),
@@ -61,6 +63,34 @@ class StripeController extends Controller
      	'created_at' => Carbon::now(),	 
 
     ]);
+
+    $carts = Cart::content();
+    foreach ($carts as $cart){
+        OrderItem::insert([
+            'order_id' => $order_id,
+            'product_id' => $cart->id,
+            'color' => $cart->options->color,
+            'size' => $cart->options->size,
+            'qty' => $cart->qty,
+            'price' => $cart->price,
+           'created_at' => Carbon::now(),	 
+    
+        ]);
+
+        if(Session::has('coupon')){
+            Session::forget('coupon');
+        }
+
+        Cart::destroy();
+
+        $notification = array(
+			'message' => 'Your Order Place Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('dashboard')->with($notification);
+
+    }
 
 
 // dd($stripe);
