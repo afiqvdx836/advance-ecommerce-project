@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use Auth;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
+
 class AllUserController extends Controller
 {
     public function MyOrders(){
@@ -16,4 +18,11 @@ class AllUserController extends Controller
 
 
     }// end method
+
+    public function OrderDetails($order_id){
+        $order = Order::with('division','district','state','user')->where('id',$order_id)->where('user_id',Auth::id())->first();
+       
+        $orderItem = OrderItem::where('order_id',$order_id)->orderBy('id','DESC')->get();
+        return view('frontend.user.order.order_details',compact('order','orderItem'));
+    }
 }
