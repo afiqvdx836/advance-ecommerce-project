@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
+use Auth;
 class AllUserController extends Controller
 {
     public function MyOrders(){
