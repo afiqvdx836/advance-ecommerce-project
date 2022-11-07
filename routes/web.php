@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CashController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\User\StripeController;
@@ -254,6 +255,9 @@ Route::get('/get-wishlist-product',[WishlistController::class, 'GetWishListProdu
 Route::get('/wishlist-remove/{id}',[WishlistController::class, 'RemoveWishlistProduct']);
 
 Route::post('/stripe/order',[StripeController::class, 'StripeOrder'])->name('stripe.order');
+
+Route::post('/cash/order',[CashController::class, 'CashOrder'])->name('cash.order');
+
 
 Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
 
