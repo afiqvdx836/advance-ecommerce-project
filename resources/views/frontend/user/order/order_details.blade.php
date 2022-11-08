@@ -157,8 +157,7 @@
                                 <label for=""> Price </label>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
+                    
             </div>
              
             @foreach($orderItem as $item)
@@ -194,11 +193,27 @@
      
                    </tr>
                    @endforeach
-            </div><!-- End col-md-5-->
 
-           
+                </tbody>
+            </table>
+        
+            </div><!-- End col-md-8-->
+
+            @if ($order->status !== 'delivered')
+                
+            @else
+            <div class="form-group">
+                <label for="label"> Order Return Reason:</label>
+                <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Return Reason</textarea>
+                
+              </div>
+            @endif
+
+         
+
 		</div> <!-- // end row -->
 		
+    
 	</div>
 	
 </div>

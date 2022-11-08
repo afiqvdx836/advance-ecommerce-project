@@ -72,7 +72,7 @@
                                         <a href="{{ url('user/order_details/'.$order->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"> View</i> </a>
 
 
-                                        <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn btn-sm btn-danger" style="margin-top:5px;"><i class="fa fa-download " style="color:white;"> Invoice</i></a>
+                                        <a target="_blank" href="{{ url('user/invoice_download/'.$order->id) }}" class="btn btn-sm btn-danger" style="margin-top:5px;"><i class="fa fa-download " style="color:white;"> Invoice</i></a>
                                     </td>
                                     
                                 </tr>
