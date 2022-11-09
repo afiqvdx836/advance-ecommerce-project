@@ -121,23 +121,17 @@
         </li>  
 		  
 		  
-		<li class="treeview">
+		<li class="treeview {{ ($prefix == '/orders'?'active':'') }}">
           <a href="#">
-            <i data-feather="edit-2"></i>
-            <span>Icons</span>
+            <i data-feather="file"></i>
+            <span>Order</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="icons_fontawesome.html"><i class="ti-more"></i>Font Awesome</a></li>
-            <li><a href="icons_glyphicons.html"><i class="ti-more"></i>Glyphicons</a></li>
-            <li><a href="icons_material.html"><i class="ti-more"></i>Material Icons</a></li>	
-            <li><a href="icons_themify.html"><i class="ti-more"></i>Themify Icons</a></li>
-            <li><a href="icons_simpleline.html"><i class="ti-more"></i>Simple Line Icons</a></li>
-            <li><a href="icons_cryptocoins.html"><i class="ti-more"></i>Cryptocoins Icons</a></li>
-            <li><a href="icons_flag.html"><i class="ti-more"></i>Flag Icons</a></li>
-            <li><a href="icons_weather.html"><i class="ti-more"></i>Weather Icons</a></li>
+            <li class="{{ ($route == 'pending-orders')? 'active':'' }}"><a href="{{route('pending-orders')}}"><i class="ti-more"></i>Pending Orders</a></li>
+            
           </ul>
         </li> 
         

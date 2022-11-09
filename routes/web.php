@@ -7,6 +7,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
@@ -46,6 +47,8 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
     return view('admin.index');
 
 })->name('dashboard');
+
+
 // All admin routes (Jerat Percintaan)
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
@@ -173,6 +176,10 @@ Route::prefix('shipping')->group(function(){
     // End Ship State
 
 });
+
+Route::prefix('orders')->group(function(){
+        Route::get('/pending/orders', [OrderController::class, 'PendingOrders'])->name('pending-orders');
+    });
 
 });// admin middleware
 
