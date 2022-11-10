@@ -57,7 +57,7 @@
 
                                 
                                 <td width="40%">
-                                  <a href="{{ route('state.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
+                                  <a href="{{ route('pending.order.details', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil" title="Edit Data"></i></a>
                                   <a href="{{ route('state.delete', $item->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                               </td>     
                            

@@ -131,6 +131,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{ ($route == 'pending-orders')? 'active':'' }}"><a href="{{route('pending-orders')}}"><i class="ti-more"></i>Pending Orders</a></li>
+            <li class="{{ ($route == 'pending.order.details')? 'active':'' }}"><a href="{{route('pending-orders')}}"><i class="ti-more"></i>Order detail</a></li>
             
           </ul>
         </li> 
