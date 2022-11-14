@@ -71,4 +71,48 @@ class OrderController extends Controller
         );
 		    return redirect()->route('pending-orders')->with($notification);
     }
+
+     //confirm to processing
+     public function ConfirmToProcessing($order_id){
+        Order::findOrFail($order_id)->update(['status'=>'processing']);
+
+        $notification = array(
+			'message' => 'Order Processing Successfully',
+			'alert-type' => 'success'
+        );
+		    return redirect()->route('confirm-orders')->with($notification);
+    }
+
+    //
+    public function ProcessingToPicked($order_id){
+        Order::findOrFail($order_id)->update(['status'=>'picked']);
+
+        $notification = array(
+			'message' => 'Order picked Successfully',
+			'alert-type' => 'success'
+        );
+		    return redirect()->route('processing-orders')->with($notification);
+    }
+
+    public function PickedToShipped($order_id){
+        Order::findOrFail($order_id)->update(['status'=>'shipped']);
+
+        $notification = array(
+			'message' => 'Order Shipped Successfully',
+			'alert-type' => 'success'
+        );
+		    return redirect()->route('processing-orders')->with($notification);
+    }
+
+    public function ShippedToDelivered($order_id){
+        Order::findOrFail($order_id)->update(['status'=>'delivered']);
+
+        $notification = array(
+			'message' => 'Order delivered Successfully',
+			'alert-type' => 'success'
+        );
+		    return redirect()->route('processing-orders')->with($notification);
+    }
+
 }
+
