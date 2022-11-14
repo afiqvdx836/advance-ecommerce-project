@@ -80,7 +80,7 @@ class OrderController extends Controller
 			'message' => 'Order Processing Successfully',
 			'alert-type' => 'success'
         );
-		    return redirect()->route('confirm-orders')->with($notification);
+		    return redirect()->route('confirmed-orders')->with($notification);
     }
 
     //
