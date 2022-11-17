@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
+use PDF;
 use Auth;
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use PDF;
 
 class AllUserController extends Controller
 {
@@ -50,5 +51,10 @@ class AllUserController extends Controller
         );
 
         return redirect()->route('my.orders')->with($notification);
+    }
+
+    public function ReturnOrderList(){
+        $orders = Order::where('user_id',Auth::id())->where('return_reason', '!=', NULL)->orderBy('id','DESC')->get();
+        return view('frontend.user.order.return_order_view', compact('orders'));
     }
 }

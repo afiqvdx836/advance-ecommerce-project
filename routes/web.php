@@ -303,7 +303,10 @@ Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails
 
 Route::get('/invoice_download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
 
-Route::get('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
+Route::post('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
+
+Route::get('/return/order/list', [AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
+
 
 
 
