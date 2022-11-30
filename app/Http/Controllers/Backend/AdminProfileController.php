@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -64,5 +65,11 @@ class AdminProfileController extends Controller
         }else{
             return redirect()->back();
         }
+    }
+
+
+    public function AllUsers(){
+        $users = User::latest()->get();
+        return view('backend.user.all_user', compact('users'));
     }
 }

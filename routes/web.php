@@ -219,6 +219,11 @@ Route::prefix('reports')->group(function(){
     Route::post('/search/by/year', [ReportController::class,'ReportByYear'])->name('search-by-year');
 });
 
+Route::prefix('allusers')->group(function(){
+    Route::get('/view', [AdminProfileController::class,'AllUsers'])->name('all-users');
+
+});
+
 });// admin middleware
 
 //Frontend Coupon Option
